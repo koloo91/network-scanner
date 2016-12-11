@@ -11,12 +11,10 @@ exports.scan = function(callback) {
 	var errorStream = '';
 
 	arpCommand.stdout.on('data', function(data) {
-		console.log(data);
 		bufferStream += data;
 	});
 
 	arpCommand.stderr.on('data', function(error) {
-		console.log(error);
 		errorStream += error;
 	});
 
