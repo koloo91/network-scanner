@@ -1,0 +1,23 @@
+{
+  "name": "network-scanner",
+  "version": "0.1.0",
+  "description": "A module which determines the status of devices on the local network",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koloo91/network-scanner.git"
+  },
+  "author": "koloo91",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/koloo91/network-scanner/issues"
+  },
+  "homepage": "https://github.com/koloo91/network-scanner#readme",
+  "dependencies": {
+    "sudo": "^1.0.3"
+  }
+}
