@@ -8,7 +8,7 @@ sudo apt-get install arp-scan
 ````
 ## Usage
 ```javascript
-var scanner = requiere('network-scanner'):
+var scanner = require('network-scanner'):
 scanner.scan(function(devices) {
 	console.log(devices);
 });
