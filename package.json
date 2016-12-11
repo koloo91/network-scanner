@@ -1,6 +1,6 @@
 {
   "name": "local-network-scanner",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A module which determines the status of devices on the local network",
   "main": "index.js",
   "scripts": {
