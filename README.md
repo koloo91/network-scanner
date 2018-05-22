@@ -2,14 +2,23 @@
 A nodejs module which determines the status of devices on the network
 
 ## Installation
+### Linux
 In your terminal, install `arp-scan`:
 ````
 sudo apt-get install arp-scan   
 ````
+
+### macOS
+In your terminal, install `arp-scan`:
+````
+brew install arp-scan   
+````
+
+
 ## Usage
 ```javascript
-var scanner = require('local-network-scanner'):
-scanner.scan(function(devices) {
+const scanner = require('local-network-scanner');
+scanner.scan(devices => {
 	console.log(devices);
 });
 ```

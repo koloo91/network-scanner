@@ -1,49 +1,50 @@
-var sudo = require('sudo');
+const sudo = require('sudo');
 
-const IP_INDEX = 0
-const MAC_ADDRESS_INDEX = 1
+const IP_INDEX = 0;
+const MAC_ADDRESS_INDEX = 1;
 
-exports.scan = function(callback) {
-	console.log('Start scanning network');
+exports.scan = callback => {
+    console.log('Start scanning network');
 
-	var arpCommand = sudo(['arp-scan', '-l', '-q']);
-	var bufferStream = ''
-	var errorStream = '';
+    const arpCommand = sudo(['arp-scan', '-l', '-q']);
+    let bufferStream = '';
+    let errorStream = '';
 
-	arpCommand.stdout.on('data', function(data) {
-		bufferStream += data;
-	});
 
-	arpCommand.stderr.on('data', function(error) {
-		errorStream += error;
-	});
+    arpCommand.stdout.on('data', data => {
+        bufferStream += data;
+    });
 
-	arpCommand.on('close', function(code) {
-		console.log('Scan finished');
+    arpCommand.stderr.on('data', error => {
+        errorStream += error;
+    });
 
-		if(code !== 0) {
-			console.log('Error: ' + code + ' : ' + errorStream);
-			return;
-		}
+    arpCommand.on('close', code => {
+        console.log('Scan finished');
 
-		var rows = bufferStream.split('\n');
-		var devices = [];
+        if (code !== 0) {
+            console.log('Error: ' + code + ' : ' + errorStream);
+            return;
+        }
 
-		for(var i = 2; i < rows.length - 4; i++) {
-			var cells = rows[i].split('\t').filter(String);
-			var device = {};
+        const rows = bufferStream.split('\n');
+        const devices = [];
 
-			if(cells[IP_INDEX]) {
-				device.ip = cells[IP_INDEX];
-			}
+        for (let i = 2; i < rows.length - 4; i++) {
+            const cells = rows[i].split('\t').filter(String);
+            const device = {};
 
-			if(cells[MAC_ADDRESS_INDEX]) {
-				device.mac = cells[MAC_ADDRESS_INDEX];
-			}
+            if (cells[IP_INDEX]) {
+                device.ip = cells[IP_INDEX];
+            }
 
-			devices.push(device);
-		}
+            if (cells[MAC_ADDRESS_INDEX]) {
+                device.mac = cells[MAC_ADDRESS_INDEX];
+            }
 
-		callback(devices);
-	});
-}
+            devices.push(device);
+        }
+
+        callback(devices);
+    });
+};
