@@ -3,10 +3,16 @@ const sudo = require('sudo');
 const IP_INDEX = 0;
 const MAC_ADDRESS_INDEX = 1;
 
-exports.scan = callback => {
+exports.scan = (options, callback) => {
     console.log('Start scanning network');
 
-    const arpCommand = sudo(['arp-scan', '-l', '-q']);
+    let commandArguments = ['-l', '-q'];
+    if (options && options.arguments) {
+        commandArguments = commandArguments.concat(options.arguments)
+    }
+
+    const arpCommand = sudo(['arp-scan'].concat(commandArguments));
+
     let bufferStream = '';
     let errorStream = '';
 

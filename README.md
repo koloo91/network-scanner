@@ -18,7 +18,7 @@ brew install arp-scan
 ## Usage
 ```javascript
 const scanner = require('local-network-scanner');
-scanner.scan(devices => {
+scanner.scan({arguments: ["-I", "en0"]}, devices => {
 	console.log(devices);
 });
 ```
@@ -30,7 +30,7 @@ node example.js
 ```
 
 ### Scan result
-````javascript
+```javascript
   [
    {
       "ip":"10.0.2.2",
@@ -45,4 +45,4 @@ node example.js
       "mac":"52:54:00:12:35:04"
    }
 ]
-````
+```
