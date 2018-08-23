@@ -1,5 +1,5 @@
 const scanner = require('./index.js');
 
-scanner.scan(devices => {
-	console.log(devices);
+scanner.scan({arguments: ["-I", "en0"]}, devices => {
+    console.log(devices);
 });
