@@ -23,6 +23,12 @@ scanner.scan({arguments: ["-I", "en0"]}, devices => {
 });
 ```
 
+## Example
+To run the example use:
+``` javascript
+node example.js
+```
+
 ### Scan result
 ```javascript
   [
