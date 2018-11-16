@@ -2,11 +2,13 @@ const sudo = require('sudo');
 
 const IP_INDEX = 0;
 const MAC_ADDRESS_INDEX = 1;
+const TARGET_NAME = 2;
 
 exports.scan = (options, callback) => {
     console.log('Start scanning network');
 
-    let commandArguments = ['-l', '-q'];
+    let commandArguments = ['-l'];
+
     if (options && options.arguments) {
         commandArguments = commandArguments.concat(options.arguments)
     }
@@ -46,6 +48,10 @@ exports.scan = (options, callback) => {
 
             if (cells[MAC_ADDRESS_INDEX]) {
                 device.mac = cells[MAC_ADDRESS_INDEX];
+            }
+
+            if (cells[TARGET_NAME]) {
+                device.name = cells[TARGET_NAME];
             }
 
             devices.push(device);
