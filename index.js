@@ -5,6 +5,7 @@ const MAC_ADDRESS_INDEX = 1;
 const TARGET_NAME = 2;
 
 exports.scan = (options, callback) => {
+    return new Promise((resolve,reject)=>{
     console.log('Start scanning network');
 
     let commandArguments = ['-l'];
@@ -31,7 +32,7 @@ exports.scan = (options, callback) => {
         console.log('Scan finished');
 
         if (code !== 0) {
-            console.log('Error: ' + code + ' : ' + errorStream);
+            reject('Error: ' + code + ' : ' + errorStream);
             return;
         }
 
@@ -57,6 +58,7 @@ exports.scan = (options, callback) => {
             devices.push(device);
         }
 
-        callback(devices);
+        resolve(devices);
+    });
     });
 };
