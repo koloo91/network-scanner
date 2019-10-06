@@ -4,7 +4,7 @@ const IP_INDEX = 0;
 const MAC_ADDRESS_INDEX = 1;
 const TARGET_NAME = 2;
 
-exports.scan = (options, callback) => {
+exports.scan = (options) => {
     return new Promise((resolve,reject)=>{
     console.log('Start scanning network');
 
